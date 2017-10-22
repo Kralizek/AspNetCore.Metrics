@@ -25,6 +25,8 @@ namespace SampleWeb
 
             services.AddAWSService<IAmazonCloudWatch>();
 
+            services.CollectDimensionsFromEC2InstanceMetadata();
+
             services.PersistMetricsOnCloudWatch(
                 new CloudWatchMetric("Elapsed time by Server", MetricValues.ElapsedTime, MetricDimensions.MachineName) { Unit = StandardUnit.Milliseconds },
                 new CloudWatchMetric("Elapsed time by Controller/Action", MetricValues.ElapsedTime, AspNetCoreMvcMetricDimensions.ControllerName, AspNetCoreMvcMetricDimensions.ActionName) { Unit = StandardUnit.Milliseconds },

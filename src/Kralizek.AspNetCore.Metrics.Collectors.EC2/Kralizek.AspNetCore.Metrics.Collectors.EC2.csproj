@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\Common.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\Kralizek.AspNetCore.Metrics.Abstractions\Kralizek.AspNetCore.Metrics.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.18.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Kralizek.AspNetCore.Metrics</RootNamespace>
+    <Description>Support to AWS EC2 Metadata for Kralizek.AspNetCore.Metrics</Description>
+    <PackageId>Kralizek.AspNetCore.Metrics.Collectors.EC2</PackageId>
+  </PropertyGroup>
+
+</Project>
+
+
+

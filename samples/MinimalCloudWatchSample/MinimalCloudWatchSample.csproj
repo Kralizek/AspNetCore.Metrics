@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Kralizek.AspNetCore.Metrics.Abstractions\Kralizek.AspNetCore.Metrics.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Kralizek.AspNetCore.Metrics.CloudWatch\Kralizek.AspNetCore.Metrics.CloudWatch.csproj" />
+    <ProjectReference Include="..\..\src\Kralizek.AspNetCore.Metrics\Kralizek.AspNetCore.Metrics.csproj" />
+  </ItemGroup>
+
+</Project>

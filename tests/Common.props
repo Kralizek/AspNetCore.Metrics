@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+	    <RootNamespace>Tests</RootNamespace>
+        <Authors>Renato Golia</Authors>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\TestBase\TestBase.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-*" />
+    </ItemGroup>
+</Project>

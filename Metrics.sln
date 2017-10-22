@@ -12,6 +12,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kralizek.AspNetCore.Metrics
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kralizek.AspNetCore.Metrics.Abstractions", "src\Kralizek.AspNetCore.Metrics.Abstractions\Kralizek.AspNetCore.Metrics.Abstractions.csproj", "{135524B5-CBF9-43D3-A99C-9424926B8672}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1C44A977-C23A-439D-9761-7101E8C48E3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudWatchSample", "samples\CloudWatchSample\CloudWatchSample.csproj", "{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +74,18 @@ Global
 		{135524B5-CBF9-43D3-A99C-9424926B8672}.Release|x64.Build.0 = Release|Any CPU
 		{135524B5-CBF9-43D3-A99C-9424926B8672}.Release|x86.ActiveCfg = Release|Any CPU
 		{135524B5-CBF9-43D3-A99C-9424926B8672}.Release|x86.Build.0 = Release|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Release|x64.Build.0 = Release|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +95,7 @@ Global
 		{79A82241-9900-482D-8CDB-B4B1D396D2C2} = {F60508CB-3C38-442A-AB57-A3D6E9696DFC}
 		{EB247186-B8B7-471E-8C72-BB79A2685CFF} = {F60508CB-3C38-442A-AB57-A3D6E9696DFC}
 		{135524B5-CBF9-43D3-A99C-9424926B8672} = {F60508CB-3C38-442A-AB57-A3D6E9696DFC}
+		{6F0EBFE9-1A46-4BFB-B538-F9C4A1B9741C} = {1C44A977-C23A-439D-9761-7101E8C48E3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D48A6D74-CCAF-4BCD-861C-D4EF9103C9BD}

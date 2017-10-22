@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Renato Golia</Authors>
+        <Product>Kralizek.AspNetCore.Metrics</Product>
+        <PackageProjectUrl>https://github.com/Kralizek/AspNetCore.Metrics</PackageProjectUrl>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/Kralizek/AspNetCore.Metrics/master/LICENSE</PackageLicenseUrl>
+    </PropertyGroup>
+</Project>

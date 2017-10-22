@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\Common.props" />
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Kralizek.AspNetCore.Metrics</RootNamespace>
+    <Description>Abstractions package for Kralizek.AspNetCore.Metrics.</Description>
+    <PackageId>Kralizek.AspNetCore.Metrics.Abstractions</PackageId>
   </PropertyGroup>
 
 </Project>

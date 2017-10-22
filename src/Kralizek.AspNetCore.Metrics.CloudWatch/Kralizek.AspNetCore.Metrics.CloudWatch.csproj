@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\Common.props" />
   <ItemGroup>
     <PackageReference Include="AWSSDK.CloudWatch" Version="3.3.4.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
@@ -14,6 +14,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Kralizek.AspNetCore.Metrics</RootNamespace>
+    <Description>Support to AWS CloudWatch for Kralizek.AspNetCore.Metrics</Description>
+    <PackageId>Kralizek.AspNetCore.Metrics.CloudWatch</PackageId>
   </PropertyGroup>
 
 </Project>

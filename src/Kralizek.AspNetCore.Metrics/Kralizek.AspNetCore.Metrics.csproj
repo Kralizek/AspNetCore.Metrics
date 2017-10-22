@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\Common.props" />
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>A ASP.NET Core Middleware to collect and push metrics</Description>
+    <PackageId>Kralizek.AspNetCore.Metrics</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

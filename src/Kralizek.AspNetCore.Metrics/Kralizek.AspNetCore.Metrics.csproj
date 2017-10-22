@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kralizek.AspNetCore.Metrics.Abstractions\Kralizek.AspNetCore.Metrics.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

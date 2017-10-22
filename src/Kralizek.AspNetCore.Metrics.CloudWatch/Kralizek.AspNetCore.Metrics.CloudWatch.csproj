@@ -1,15 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Kralizek.AspNetCore.Metrics\Kralizek.AspNetCore.Metrics.csproj" />
+    <PackageReference Include="AWSSDK.CloudWatch" Version="3.3.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudWatch" Version="3.3.4.1" />
+    <ProjectReference Include="..\Kralizek.AspNetCore.Metrics.Abstractions\Kralizek.AspNetCore.Metrics.Abstractions.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Kralizek.AspNetCore.Metrics</RootNamespace>
   </PropertyGroup>
 
 </Project>

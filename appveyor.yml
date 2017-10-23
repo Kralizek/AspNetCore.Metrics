@@ -1,0 +1,28 @@
+version: '{build}'
+
+image: Visual Studio 2017
+
+configuration: Release
+
+platform: Any CPU
+
+only_commits:
+  files:
+    - src/
+
+build_script:
+
+- ps: >-
+    dotnet restore
+
+    dotnet build -c $env:CONFIGURATION --no-incremental
+
+    Get-ChildItem .\tests\Metrics.* -Directory | % { dotnet test $_.FullName  }
+
+    dotnet pack -c Release
+
+test: off
+
+artifacts:
+
+- path: '**\*.nupkg'

@@ -12,10 +12,16 @@ namespace Kralizek.AspNetCore.Metrics.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            var controllerName = context.RouteData.Values["controller"] as string;
+            var actionName = context.RouteData.Values["action"] as string;
+            
+            var controllerNamespace = context.Controller?.GetType().Namespace;
+
             var dimensions = new Dictionary<IMetricDimension, object>(MetricDimensionEqualityComparer.Default)
             {
-                [AspNetCoreMvcMetricDimensions.ControllerName] = context.RouteData.Values["controller"] as string,
-                [AspNetCoreMvcMetricDimensions.ActionName] = context.RouteData.Values["action"] as string
+                [AspNetCoreMvcMetricDimensions.ControllerName] = controllerName,
+                [AspNetCoreMvcMetricDimensions.ActionName] = actionName,
+                [AspNetCoreMvcMetricDimensions.Action] = $"{controllerName}.{actionName} ({controllerNamespace})"
             };
 
             context.HttpContext.Items.Add(AspNetCoreMvcMetricCollector.HttpContextDimensionsKey, dimensions);

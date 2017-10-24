@@ -30,6 +30,7 @@ namespace SampleWeb
             services.PersistMetricsOnCloudWatch(
                 new CloudWatchMetric("Elapsed time by Server", MetricValues.ElapsedTime, MetricDimensions.MachineName) { Unit = StandardUnit.Milliseconds },
                 new CloudWatchMetric("Elapsed time by Controller/Action", MetricValues.ElapsedTime, AspNetCoreMvcMetricDimensions.ControllerName, AspNetCoreMvcMetricDimensions.ActionName) { Unit = StandardUnit.Milliseconds },
+                new CloudWatchMetric("Elapsed time by Action", MetricValues.ElapsedTime, AspNetCoreMvcMetricDimensions.Action) { Unit = StandardUnit.Milliseconds },
                 new CloudWatchMetric("Elapsed time by HTTP method", MetricValues.ElapsedTime, MetricDimensions.HttpMethod) { Unit = StandardUnit.Milliseconds },
                 new CloudWatchMetric("Elapsed time", MetricValues.ElapsedTime) { Unit = StandardUnit.Milliseconds },
                 new CloudWatchMetric("Elapsed time by Controller/Action/HTTP status", MetricValues.ElapsedTime, AspNetCoreMvcMetricDimensions.ControllerName, AspNetCoreMvcMetricDimensions.ActionName, MetricDimensions.HttpResponseStatus) { Unit = StandardUnit.Milliseconds }

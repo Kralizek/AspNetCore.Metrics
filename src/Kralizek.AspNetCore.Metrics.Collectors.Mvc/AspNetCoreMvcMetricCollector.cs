@@ -24,18 +24,12 @@ namespace Kralizek.AspNetCore.Metrics
         {
             var contextDimensions = httpContext.Items[HttpContextDimensionsKey] as IReadOnlyDictionary<IMetricDimension, object>;
 
-            CopyDimensionValue(AspNetCoreMvcMetricDimensions.ControllerName, contextDimensions, dimensions);
-            CopyDimensionValue(AspNetCoreMvcMetricDimensions.ActionName, contextDimensions, dimensions);
+            foreach (var pair in contextDimensions)
+            {
+                dimensions.Add(pair.Key, pair.Value);
+            }
 
             return Task.CompletedTask;
-        }
-
-        private void CopyDimensionValue(IMetricDimension dimension, IReadOnlyDictionary<IMetricDimension, object> contextDimensions, IDictionary<IMetricDimension, object> dimensions)
-        {
-            if (contextDimensions.TryGetValue(dimension, out var value))
-            {
-                dimensions.Add(dimension, value);
-            }
         }
     }
 

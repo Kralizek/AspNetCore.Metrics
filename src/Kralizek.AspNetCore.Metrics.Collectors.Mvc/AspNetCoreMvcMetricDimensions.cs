@@ -8,5 +8,7 @@ namespace Kralizek.AspNetCore.Metrics
     {
         public static readonly IMetricDimension ControllerName = new MetricDimension("ControllerName");
         public static readonly IMetricDimension ActionName = new MetricDimension("ActionName");
+
+        public static readonly IMetricDimension Action = new MetricDimension("Action");
     }
 }

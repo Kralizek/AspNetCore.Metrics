@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <Authors>Renato Golia</Authors>
-        <Version>1.0.0</Version>
+        <Version>1.1.0</Version>
         <Product>Kralizek.AspNetCore.Metrics</Product>
         <PackageProjectUrl>https://github.com/Kralizek/AspNetCore.Metrics</PackageProjectUrl>
         <PackageLicenseUrl>https://raw.githubusercontent.com/Kralizek/AspNetCore.Metrics/master/LICENSE</PackageLicenseUrl>

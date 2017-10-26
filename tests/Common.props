@@ -4,6 +4,7 @@
         <Authors>Renato Golia</Authors>
         <IsPackable>false</IsPackable>
         <RootNamespace>Tests</RootNamespace>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\TestBase.XUnit\TestBase.XUnit.csproj" />

@@ -3,25 +3,23 @@ using AutoFixture.AutoMoq;
 using Kralizek.AspNetCore.Metrics;
 using Kralizek.AspNetCore.Metrics.Util;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Tests.Util
 {
-    [TestFixture]
     public class MetricDimensionEqualityComparerTests
     {
         IFixture fixture;
 
-        [SetUp]
-        public void Initialize()
+        public MetricDimensionEqualityComparerTests()
         {
             fixture = new Fixture().Customize(new AutoMoqCustomization());
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public void Equals_returns_true_if_same_name(string name)
         {
             var mockX = new Mock<IMetricDimension>();
@@ -30,10 +28,10 @@ namespace Tests.Util
             var mockY = new Mock<IMetricDimension>();
             mockY.SetupGet(p => p.Name).Returns(name);
 
-            Assert.That(MetricDimensionEqualityComparer.Default.Equals(mockX.Object, mockY.Object), Is.True);
+            Assert.True(MetricDimensionEqualityComparer.Default.Equals(mockX.Object, mockY.Object));
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public void Equals_returns_false_if_not_same_name(string nameX, string nameY)
         {
             var mockX = new Mock<IMetricDimension>();
@@ -42,7 +40,7 @@ namespace Tests.Util
             var mockY = new Mock<IMetricDimension>();
             mockY.SetupGet(p => p.Name).Returns(nameY);
 
-            Assert.That(MetricDimensionEqualityComparer.Default.Equals(mockX.Object, mockY.Object), Is.False);
+            Assert.False(MetricDimensionEqualityComparer.Default.Equals(mockX.Object, mockY.Object));
         }
 
 

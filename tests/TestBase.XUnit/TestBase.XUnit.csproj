@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture.AutoMoq" Version="4.0.0-rc1" />
+    <PackageReference Include="Moq" Version="4.7.142" />
+    <PackageReference Include="xunit" Version="2.3.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.0.0-rc1" />
+  </ItemGroup>
+
+</Project>

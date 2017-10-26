@@ -1,35 +1,34 @@
 ﻿using Amazon.Util;
-using NUnit.Framework;
+using Xunit;
 using static Kralizek.AspNetCore.Metrics.SdkMetadataProvider;
 
 
 namespace Tests
 {
-    [TestFixture]
     public class SdkMetadataProviderTests
     {
-        [Test]
+        [Fact]
         public void InstanceId_forwards_to_EC2InstanceMetadata_service()
         {
-            Assert.That(Instance.GetInstanceId(), Is.EqualTo(EC2InstanceMetadata.InstanceId));
+            Assert.Equal(Instance.GetInstanceId(), EC2InstanceMetadata.InstanceId);
         }
 
-        [Test]
+        [Fact]
         public void InstanceType_forwards_to_EC2InstanceMetadata_service()
         {
-            Assert.That(Instance.GetInstanceType(), Is.EqualTo(EC2InstanceMetadata.InstanceType));
+            Assert.Equal(Instance.GetInstanceType(), EC2InstanceMetadata.InstanceType);
         }
 
-        [Test]
+        [Fact]
         public void AvailabilityZone_forwards_to_EC2InstanceMetadata_service()
         {
-            Assert.That(Instance.GetAvailabilityZone(), Is.EqualTo(EC2InstanceMetadata.AvailabilityZone));
+            Assert.Equal(Instance.GetAvailabilityZone(), EC2InstanceMetadata.AvailabilityZone);
         }
 
-        [Test]
+        [Fact]
         public void AmiId_forwards_to_EC2InstanceMetadata_service()
         {
-            Assert.That(Instance.GetAmiId(), Is.EqualTo(EC2InstanceMetadata.AmiId));
+            Assert.Equal(Instance.GetAmiId(), EC2InstanceMetadata.AmiId);
         }
     }
 }

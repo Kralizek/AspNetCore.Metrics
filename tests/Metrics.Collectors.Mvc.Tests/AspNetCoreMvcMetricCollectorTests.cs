@@ -1,17 +1,16 @@
 ﻿using Kralizek.AspNetCore.Metrics;
 using Microsoft.AspNetCore.Http;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Tests
 {
-    [TestFixture]
     public class AspNetCoreMvcMetricCollectorTests
     {
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public void ControllerName_is_added_from_HttpContext(IHttpContextAccessor accessor, IDictionary<IMetricDimension, object> dimensions, IDictionary<IMetricValue, IValue> metrics, string controllerName)
         {
             var sut = new AspNetCoreMvcMetricCollector(accessor);
@@ -27,12 +26,12 @@ namespace Tests
 
             sut.OnActionExecutedAsync(dimensions, metrics);
 
-            Assert.That(dimensions.ContainsKey(AspNetCoreMvcMetricDimensions.ControllerName));
-            Assert.That(dimensions[AspNetCoreMvcMetricDimensions.ControllerName], Is.EqualTo(controllerName));
+            Assert.True(dimensions.ContainsKey(AspNetCoreMvcMetricDimensions.ControllerName));
+            Assert.Equal(dimensions[AspNetCoreMvcMetricDimensions.ControllerName], controllerName);
         }
 
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public void ActionName_is_added_from_HttpContext(IHttpContextAccessor accessor, IDictionary<IMetricDimension, object> dimensions, IDictionary<IMetricValue, IValue> metrics, string actionName)
         {
             var sut = new AspNetCoreMvcMetricCollector(accessor);
@@ -48,8 +47,8 @@ namespace Tests
 
             sut.OnActionExecutedAsync(dimensions, metrics);
 
-            Assert.That(dimensions.ContainsKey(AspNetCoreMvcMetricDimensions.ActionName));
-            Assert.That(dimensions[AspNetCoreMvcMetricDimensions.ActionName], Is.EqualTo(actionName));
+            Assert.True(dimensions.ContainsKey(AspNetCoreMvcMetricDimensions.ActionName));
+            Assert.Equal(dimensions[AspNetCoreMvcMetricDimensions.ActionName], actionName);
         }
     }
 }

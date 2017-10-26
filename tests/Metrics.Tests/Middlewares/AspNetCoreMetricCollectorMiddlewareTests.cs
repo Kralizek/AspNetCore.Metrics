@@ -1,11 +1,11 @@
-﻿using AutoFixture;
+using AutoFixture;
 using AutoFixture.AutoMoq;
 using Kralizek.AspNetCore.Metrics;
 using Kralizek.AspNetCore.Metrics.Middlewares;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,15 +16,13 @@ using MetricDictionary = System.Collections.Generic.IDictionary<Kralizek.AspNetC
 
 namespace Tests.Middlewares
 {
-    [TestFixture]
     public class AspNetCoreMetricCollectorMiddlewareTests
     {
         private IFixture fixture;
         private Mock<IMetricPersister> mockPersister;
         private Mock<RequestDelegate> mockDelegate;
 
-        [SetUp]
-        public void Initialize()
+        public AspNetCoreMetricCollectorMiddlewareTests()
         {
             fixture = new Fixture().Customize(new AutoMoqCustomization());
 
@@ -38,7 +36,7 @@ namespace Tests.Middlewares
             return new AspNetCoreMetricCollectorMiddleware(mockDelegate.Object, mockPersister.Object, Mock.Of<ILogger<AspNetCoreMetricCollectorMiddleware>>());
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public async Task Invoke_uses_RequestDelegate(HttpContext context)
         {
             var collectors = new[] { Mock.Of<IMetricCollector>() };
@@ -50,7 +48,7 @@ namespace Tests.Middlewares
             mockDelegate.Verify(p => p(context));
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public async Task Invoke_uses_collectors(HttpContext context, IMetricCollector collector)
         {
             var collectors = new[] { collector };
@@ -63,7 +61,7 @@ namespace Tests.Middlewares
             Mock.Get(collector).Verify(p => p.OnActionExecutedAsync(It.IsAny<DimensionDictionary>(), It.IsAny<MetricDictionary>()));
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public async Task Invoke_uses_persister(HttpContext context)
         {
             var collectors = new[] { Mock.Of<IMetricCollector>() };

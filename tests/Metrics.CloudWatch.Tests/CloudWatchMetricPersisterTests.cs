@@ -6,7 +6,7 @@ using Kralizek.AspNetCore.Metrics;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace Tests
 {
-    [TestFixture]
     public class CloudWatchMetricPersisterTests
     {
         private IFixture fixture;
@@ -24,10 +23,7 @@ namespace Tests
         private Mock<IAmazonCloudWatch> mockClient;
         private Mock<IOptions<CloudWatchMetricPersisterConfiguration>> mockOptions;
 
-        //private CloudWatchMetricPersisterConfiguration configuration = new CloudWatchMetricPersisterConfiguration();
-
-        [SetUp]
-        public void Initialize()
+        public CloudWatchMetricPersisterTests()
         {
             fixture = new Fixture().Customize(new AutoMoqCustomization());
 
@@ -61,7 +57,7 @@ namespace Tests
             return new CloudWatchMetricPersister(mockClient.Object, mockOptions.Object, Mock.Of<ILogger<CloudWatchMetricPersister>>());
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public async Task PutRequest_body_is_correctly_created(IValue value)
         {
             var metric = fixture.Create<CloudWatchMetric>();
@@ -97,14 +93,14 @@ namespace Tests
 
         bool ValidatePutRequestBody(PutMetricDataRequest request, MetricData data, CloudWatchMetricPersisterConfiguration configuration)
         {
-            Assert.That(request.Namespace, Is.EqualTo(configuration.Namespace));
+            Assert.Equal(configuration.Namespace, request.Namespace);
 
-            Assert.That(request.MetricData, Has.Exactly(1).InstanceOf<MetricDatum>());
+            Assert.Equal(1, request.MetricData.OfType<MetricDatum>().Count());
 
             return true;
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public async Task PutRequest_datum_is_correctly_created(IValue value)
         {
             var metric = fixture.Create<CloudWatchMetric>();
@@ -143,16 +139,16 @@ namespace Tests
 
             var datum = request.MetricData[0];
 
-            Assert.That(datum.Value, Is.EqualTo(data.Metrics[metric.Metric].ReadAsDouble()));
+            Assert.Equal(datum.Value, data.Metrics[metric.Metric].ReadAsDouble());
 
-            Assert.That(datum.Unit, Is.EqualTo(metric.Unit));
+            Assert.Equal(datum.Unit, metric.Unit);
 
-            Assert.That(datum.StorageResolution, Is.EqualTo((int)metric.StorageResolution));
+            Assert.Equal(datum.StorageResolution, (int)metric.StorageResolution);
 
             return true;
         }
 
-        [Test, AutoMoqData]
+        [Theory, AutoMoqData]
         public async Task PutRequest_datum_dimensions_are_correctly_created(IValue value)
         {
             var metric = fixture.Create<CloudWatchMetric>();
@@ -191,7 +187,7 @@ namespace Tests
 
             var datum = request.MetricData[0];
 
-            Assert.That(datum.Dimensions, Has.Exactly(metric.Dimensions.Count).InstanceOf<Dimension>());
+            Assert.Equal(datum.Dimensions.OfType<Dimension>().Count(),metric.Dimensions.Count);
 
             return true;
         }

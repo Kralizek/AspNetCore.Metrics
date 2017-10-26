@@ -1,8 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\Common.props" />
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Kralizek.AspNetCore.Metrics\Kralizek.AspNetCore.Metrics.csproj" />

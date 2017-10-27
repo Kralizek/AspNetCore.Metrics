@@ -1,6 +1,10 @@
+#tool "nuget:?package=xunit.runner.console"
+#tool "nuget:?package=JetBrains.dotCover.CommandLineTools"
+
 var target = Argument("Target", "Build");
 var configuration = Argument("Configuration", "Release");
 var outputPath = Argument<DirectoryPath>("Output", "output");
+var overrideEnvironment = Argument<bool>("OverrideChecks", false);
 
 Task("Restore")
     .Does(() =>
@@ -12,41 +16,88 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    DotNetCoreBuild("Metrics.sln", new DotNetCoreBuildSettings
+    DotNetCoreBuild(".", new DotNetCoreBuildSettings
     {
         Configuration = configuration
     });
 });
 
-Task("Test")
+Task("Test-WithCoverage")
+    //.WithCriteria(() => BuildSystem.IsRunningOnAppVeyor || overrideEnvironment)
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    var projectFiles = GetFiles("tests/Metrics.*/*.csproj");
-    foreach (var file in projectFiles)
+    var testProjectFiles = GetFiles("tests/Metrics.*/*.csproj");
+
+    var testOutputFolder = outputPath.Combine("Tests");
+
+    foreach (var file in testProjectFiles)
     {
-        DotNetCoreTest(file.FullPath);
+        Information($"Processing {file.FullPath}");
+
+        var outputFilePath = MakeAbsolute(testOutputFolder).CombineWithFilePath(file.GetFilenameWithoutExtension());
+
+        DotCoverCover(tool => {
+            tool.DotNetCoreTool(file, "xunit", new ProcessArgumentBuilder()
+                    .AppendSwitchQuoted("-xml", outputFilePath.AppendExtension(".xml").ToString()));
+        },
+        MakeAbsolute(testOutputFolder).CombineWithFilePath(file.GetFilenameWithoutExtension()).AppendExtension(".dcvr"),
+        new DotCoverCoverSettings{ TargetWorkingDir = file.GetDirectory() }
+            .WithFilter("+:Kralizek")
+            .WithFilter("-:Tests")
+        );
     }
 });
 
-Task("CleanOutputFolder")
+Task("Test-Local")
+    .WithCriteria(() => BuildSystem.IsLocalBuild)
+    .IsDependentOn("Restore")
     .Does(() =>
 {
-    CleanDirectory(outputPath);
-});
+    var testProjectFiles = GetFiles("tests/Metrics.*/*.csproj");
 
-Task("Pack")
-    .IsDependentOn("Test")
-    .IsDependentOn("CleanOutputFolder")
-    .Does(() =>
-{
-    EnsureDirectoryExists(outputPath);
-
-    DotNetCorePack("Metrics.sln", new DotNetCorePackSettings
+    foreach (var file in testProjectFiles)
     {
-        Configuration = configuration,
-        OutputDirectory = outputPath
-    });
+        Information($"Processing {file.FullPath}");
+
+        DotNetCoreTool(file, "xunit");
+    }
 });
+
+Task("Test")
+    .IsDependentOn("Test-Local")
+    .IsDependentOn("Test-WithCoverage")
+;
+
+// Task("Test")
+//     .IsDependentOn("Restore")
+//     .Does(() =>
+// {
+//     var projectFiles = GetFiles("tests/Metrics.*/*.csproj");
+//     foreach (var file in projectFiles)
+//     {
+//         DotNetCoreTest(file.FullPath);
+//     }
+// });
+
+// Task("CleanOutputFolder")
+//     .Does(() =>
+// {
+//     CleanDirectory(outputPath);
+// });
+
+// Task("Pack")
+//     .IsDependentOn("Test")
+//     .IsDependentOn("CleanOutputFolder")
+//     .Does(() =>
+// {
+//     EnsureDirectoryExists(outputPath);
+
+//     DotNetCorePack("Metrics.sln", new DotNetCorePackSettings
+//     {
+//         Configuration = configuration,
+//         OutputDirectory = outputPath
+//     });
+// });
 
 RunTarget(target);

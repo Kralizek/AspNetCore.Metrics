@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics.Collectors.EC2.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics.Collectors.Mvc.Tests", "tests\Metrics.Collectors.Mvc.Tests\Metrics.Collectors.Mvc.Tests.csproj", "{A3CB3F94-B18B-46DE-BB7D-5EF2A2E7BE4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase.XUnit", "tests\TestBase.XUnit\TestBase.XUnit.csproj", "{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBase.XUnit", "tests\TestBase.XUnit\TestBase.XUnit.csproj", "{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -176,16 +176,16 @@ Global
 		{A3CB3F94-B18B-46DE-BB7D-5EF2A2E7BE4D}.Release|x86.Build.0 = Release|Any CPU
 		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x64.ActiveCfg = Debug|x64
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x64.Build.0 = Debug|x64
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x86.ActiveCfg = Debug|x86
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x86.Build.0 = Debug|x86
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x64.Build.0 = Debug|Any CPU
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Debug|x86.Build.0 = Debug|Any CPU
 		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x64.ActiveCfg = Release|x64
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x64.Build.0 = Release|x64
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x86.ActiveCfg = Release|x86
-		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x86.Build.0 = Release|x86
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x64.ActiveCfg = Release|Any CPU
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x64.Build.0 = Release|Any CPU
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CFC8AFD-394C-49F0-9C51-2C93B25A770A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

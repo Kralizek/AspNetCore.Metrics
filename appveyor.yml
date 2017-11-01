@@ -13,16 +13,10 @@ only_commits:
 build_script:
 
 - ps: >-
-    dotnet restore
-
-    dotnet build -c $env:CONFIGURATION --no-incremental
-
-    Get-ChildItem .\tests\Metrics.* -Directory | % { dotnet test $_.FullName  }
-
-    dotnet pack -c Release
+    .\build.ps1 -Target Pack
 
 test: off
 
 artifacts:
 
-- path: '**\*.nupkg'
+- path: 'output\*.nupkg'

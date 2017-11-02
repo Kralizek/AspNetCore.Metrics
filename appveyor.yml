@@ -13,10 +13,6 @@ only_commits:
 build_script:
 
 - ps: >-
-    .\build.ps1 -Target Pack
+    .\build.ps1 -Target Full
 
 test: off
-
-artifacts:
-
-- path: 'output\*.nupkg'

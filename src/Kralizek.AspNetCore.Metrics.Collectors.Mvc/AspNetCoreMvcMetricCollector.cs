@@ -22,11 +22,12 @@ namespace Kralizek.AspNetCore.Metrics
 
         public Task OnActionExecutedAsync(IDictionary<IMetricDimension, object> dimensions, IDictionary<IMetricValue, IValue> metrics)
         {
-            var contextDimensions = httpContext.Items[HttpContextDimensionsKey] as IReadOnlyDictionary<IMetricDimension, object>;
-
-            foreach (var pair in contextDimensions)
+            if (httpContext.Items[HttpContextDimensionsKey] is IReadOnlyDictionary<IMetricDimension, object> contextDimensions)
             {
-                dimensions.Add(pair.Key, pair.Value);
+                foreach (var pair in contextDimensions)
+                {
+                    dimensions.Add(pair.Key, pair.Value);
+                }
             }
 
             return Task.CompletedTask;

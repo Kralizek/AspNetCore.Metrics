@@ -17,12 +17,23 @@ namespace Kralizek.AspNetCore.Metrics.Filters
             
             var controllerNamespace = context.Controller?.GetType().Namespace;
 
-            var dimensions = new Dictionary<IMetricDimension, object>(MetricDimensionEqualityComparer.Default)
+            var dimensions = new Dictionary<IMetricDimension, object>(MetricDimensionEqualityComparer.Default);
+
+            if (!string.IsNullOrEmpty(controllerName))
             {
-                [AspNetCoreMvcMetricDimensions.ControllerName] = controllerName,
-                [AspNetCoreMvcMetricDimensions.ActionName] = actionName,
-                [AspNetCoreMvcMetricDimensions.Action] = $"{controllerName}.{actionName} ({controllerNamespace})"
-            };
+                dimensions.Add(AspNetCoreMvcMetricDimensions.ControllerName, controllerName);
+            }
+
+            if (!string.IsNullOrEmpty(actionName))
+            {
+                dimensions.Add(AspNetCoreMvcMetricDimensions.ActionName, actionName);
+            }
+
+            if (!string.IsNullOrEmpty(controllerName) && !string.IsNullOrEmpty(actionName) &&
+                !string.IsNullOrEmpty(controllerNamespace))
+            {
+                dimensions.Add(AspNetCoreMvcMetricDimensions.Action, $"{controllerName}.{actionName} ({controllerNamespace})");
+            }
 
             context.HttpContext.Items.Add(AspNetCoreMvcMetricCollector.HttpContextDimensionsKey, dimensions);
 

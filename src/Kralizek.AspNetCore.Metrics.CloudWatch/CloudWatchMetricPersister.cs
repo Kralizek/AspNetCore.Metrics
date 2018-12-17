@@ -1,5 +1,6 @@
 ﻿using Amazon.CloudWatch;
 using Amazon.CloudWatch.Model;
+using Kralizek.AspNetCore.Metrics.Abstractions.Util;
 using Kralizek.AspNetCore.Metrics.Util;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -55,31 +56,35 @@ namespace Kralizek.AspNetCore.Metrics
                                                                })
                           };
 
-            var request = new PutMetricDataRequest
-            {
-                Namespace = configuration.Namespace,
-                MetricData = new List<MetricDatum>(metrics)
-            };
+            var chunks = metrics.Chunk(20);
 
-            if (request.MetricData.Count > 0)
+            foreach (var chunk in chunks)
             {
-                try
+                var request = new PutMetricDataRequest
                 {
-                    var response = await cloudWatch.PutMetricDataAsync(request);
+                    Namespace = configuration.Namespace,
+                    MetricData = new List<MetricDatum>(chunk)
+                };
 
-                    logger.LogDebug($"Pushed {request.MetricData.Count} metrics to CloudWatch");
+                if (request.MetricData.Count > 0)
+                {
+                    try
+                    {
+                        var response = await cloudWatch.PutMetricDataAsync(request);
+
+                        logger.LogDebug($"Pushed {request.MetricData.Count} metrics to CloudWatch");
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError(ex, "Unable to push metrics to CloudWatch");
+                        throw;
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    logger.LogError(ex, "Unable to push metrics to CloudWatch");
-                    throw;
+                    logger.LogDebug("No metric was pushed to CloudWatch. Check your configuration.");
                 }
             }
-            else
-            {
-                logger.LogDebug("No metric was pushed to CloudWatch. Check your configuration.");
-            }
-
         }
 
         private bool IsDataSufficient(MetricData data)

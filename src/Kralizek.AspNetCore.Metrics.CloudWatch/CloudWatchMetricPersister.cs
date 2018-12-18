@@ -29,7 +29,8 @@ namespace Kralizek.AspNetCore.Metrics
         {
             if (!configuration.SkipDataValidation && !IsDataSufficient(data))
             {
-                logger.LogWarning("Collected data is not sufficient for configured metrics");
+                logger.LogDebug("Collected data is not sufficient for configured metrics");
+                return;
             }
 
             var now = DateTimeOffset.UtcNow.UtcDateTime;
